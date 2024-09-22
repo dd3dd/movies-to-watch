@@ -1,6 +1,9 @@
-import { Movie } from "./definitions";
-export async function fetchDataByQuery(query: string) {}
-export async function fetchPopularMovies() {
+import { Movie, SortKey } from "./definitions";
+import { sortMap } from "./constant";
+export async function fetchTopRatedMovies(
+  currentPage: number,
+  sort_by: SortKey
+) {
   const options = {
     method: "GET",
     headers: {
@@ -8,9 +11,10 @@ export async function fetchPopularMovies() {
       Authorization: `Bearer ${process.env.API_token}`,
     },
   };
+  const sortOption = sortMap[sort_by];
   try {
     const response = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${currentPage}&sort_by=${sortOption}&vote_count.gte=1000`,
       options
     );
     if (!response.ok) {
@@ -23,12 +27,16 @@ export async function fetchPopularMovies() {
       title: movie.title,
       release_date: movie.release_date,
       vote_average: movie.vote_average,
-      poster_path: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+      poster_path: "https://image.tmdb.org/t/p/w780" + movie.poster_path,
     }));
 
-    return movies;
+    return {
+      movies,
+      total_pages: data.total_pages,
+    };
   } catch (error) {
     console.error("Fetch Error:", error);
     throw new Error("Failed to fetch movies.");
   }
 }
+export async function fetchDataByQuery(query: string) {}
