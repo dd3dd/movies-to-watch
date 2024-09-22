@@ -1,43 +1,26 @@
 "use client";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Movie } from "@/lib/definitions";
 import Image from "next/image";
 export default function MovieCard({ movie }: { movie: Movie }) {
   const { id, title, release_date, vote_average, poster_path } = movie;
   return (
-    // <Dialog>
-    //   <DialogTrigger asChild>
     <Card className="relative cursor-pointer hover:bg-muted/50 transition-colors">
       <CardContent className="px-0 pb-4">
         <Image
           className="rounded-xl"
           priority
-          width={500}
-          height={500}
+          width={780}
+          height={780}
           src={poster_path}
           alt="poster"
         />
       </CardContent>
 
-      <CardContent className="text-xl font-bold pb-2 ">
-        <p>{title}</p>
+      <CardContent className="text-xl font-bold pb-2">
+        <p className="overflow-hidden">{title}</p>
       </CardContent>
-      <CardContent>
+      <CardContent className="flex justify-between pb-12">
         <div className="flex items-center pb-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +34,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
               clipRule="evenodd"
             />
           </svg>
+
           <p>{vote_average}</p>
         </div>
         <p>{release_date}</p>
@@ -72,35 +56,5 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         </svg>
       </CardFooter>
     </Card>
-    //   </DialogTrigger>
-    //   <DialogContent className="sm:max-w-[425px]">
-    //     <DialogHeader>
-    //       <DialogTitle className="mb-2">{movie.title}</DialogTitle>
-    //     </DialogHeader>
-    //     <DialogDescription>
-    //       {/* <strong>Year:</strong> {movie.year} */}
-    //     </DialogDescription>
-    //     <DialogDescription>
-    //       {/* <strong>Director:</strong> {movie.director} */}
-    //     </DialogDescription>
-    //     <DialogDescription>
-    //       {/* <strong>Rating:</strong> {movie.rating} */}
-    //     </DialogDescription>
-    //     <DialogDescription>
-    //       {/* <strong>Description:</strong> {movie.description} */}
-    //     </DialogDescription>
-    //     <div className="mt-4">
-    //       <Button
-    //         // onClick={() => toggleWatchList(movie.id)}
-    //         // variant={watchList.includes(movie.id) ? "secondary" : "default"}
-    //         className="w-full"
-    //       >
-    //         {/* {watchList.includes(movie.id)
-    //       ? "Remove from Watch List"
-    //       : "Add to Watch List"} */}
-    //       </Button>
-    //     </div>
-    //   {/* </DialogContent>
-    // </Dialog> */}
   );
 }
