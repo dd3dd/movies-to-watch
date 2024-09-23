@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { sortOptions } from "@/lib/constant";
+import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
 export default function SortDropdown() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -26,20 +27,7 @@ export default function SortDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-5 mr-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"
-            />
-          </svg>
+          <ArrowsUpDownIcon className="w-5 mr-1" />
           排序
         </Button>
       </DropdownMenuTrigger>

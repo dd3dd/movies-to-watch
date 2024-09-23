@@ -14,3 +14,10 @@ export type SortOptions = {
   title_asc: string;
 };
 export type SortKey = keyof SortOptions;
+
+export type Actor = {
+  id: number;
+  name: string;
+  profile_path: string;
+  character: string;
+};
