@@ -1,7 +1,9 @@
-import { fetchMovieDetails } from "@/lib/data";
+import { fetchMovieDetails } from "@/app/lib/data";
 import Image from "next/image";
 import Details from "@/app/ui/movie-details/details";
 import Casts from "@/app/ui/movie-details/casts";
+import defaultImage from "@/public/default.png";
+
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const { poster_path } = await fetchMovieDetails(id);
@@ -15,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             priority
             width={780}
             height={780}
-            src={poster_path}
+            src={poster_path || defaultImage}
             alt="poster"
           />
         </div>

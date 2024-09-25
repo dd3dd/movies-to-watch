@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Movie, SortKey } from "./definitions";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -36,3 +37,31 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export function sortMovies(movies: Movie[], sortBy: SortKey) {
+  return movies.sort((a, b) => {
+    switch (sortBy) {
+      case "rating_desc":
+        return b.vote_average - a.vote_average;
+      case "rating_asc":
+        return a.vote_average - b.vote_average;
+      case "date_desc":
+        return (
+          new Date(b.release_date).getTime() -
+          new Date(a.release_date).getTime()
+        );
+
+      case "date_asc":
+        return (
+          new Date(a.release_date).getTime() -
+          new Date(b.release_date).getTime()
+        );
+      case "title_desc":
+        return b.title.localeCompare(a.title);
+      case "title_asc":
+        return a.title.localeCompare(b.title);
+      default:
+        return 0;
+    }
+  });
+}

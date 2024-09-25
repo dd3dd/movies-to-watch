@@ -8,19 +8,29 @@ import {
 import { Button } from "@/components/ui/button";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { sortOptions } from "@/lib/constant";
+import { sortOptions } from "@/app/lib/constant";
 import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
-export default function SortDropdown() {
+export default function SortDropdown({
+  type,
+}: {
+  type: "top-rated" | "search";
+}) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentSort = searchParams.get("sort");
 
   const createSortByURL = (sort_by: string) => {
-    const params = new URLSearchParams(searchParams);
-    const page = params.get("page") || "1";
-    params.set("page", page);
-    params.set("sort", sort_by);
-    return `${pathname}?${params.toString()}`;
+    const paramsTopRated = new URLSearchParams(searchParams);
+    const paramsSearch = new URLSearchParams(searchParams);
+
+    const page = paramsTopRated.get("page") || "1";
+    paramsTopRated.set("page", page);
+    paramsTopRated.set("sort", sort_by);
+
+    paramsSearch.set("sort", sort_by);
+    return type === "top-rated"
+      ? `${pathname}?${paramsTopRated.toString()}`
+      : `${pathname}?${paramsSearch.toString()}`;
   };
 
   return (

@@ -1,10 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { fetchMovieCredits } from "@/lib/data";
+import { fetchMovieCredits } from "@/app/lib/data";
 
 export default async function Casts({ id }: { id: string }) {
   const { actors } = await fetchMovieCredits(id);
+  if (actors.length === 0) return;
   return (
     <div className="mt-12">
       <h2 className="text-3xl font-bold mb-6">Cast</h2>
@@ -15,10 +16,7 @@ export default async function Casts({ id }: { id: string }) {
               <Avatar className="w-28 h-28 mr-6">
                 <AvatarImage asChild src={actor.profile_path}>
                   <Image
-                    src={
-                      actor.profile_path ||
-                      "https://avatars.githubusercontent.com/u/85333339?v=4"
-                    }
+                    src={actor.profile_path}
                     width={300}
                     height={300}
                     alt={actor.name}

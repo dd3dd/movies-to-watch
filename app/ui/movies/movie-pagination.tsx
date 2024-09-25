@@ -9,7 +9,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname, useSearchParams } from "next/navigation";
-import { generatePagination } from "@/lib/utils";
+import { generatePagination } from "@/app/lib/utils";
 export default function MoviePagination({
   totalPages,
 }: {

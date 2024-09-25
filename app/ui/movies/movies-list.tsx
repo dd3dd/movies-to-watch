@@ -1,7 +1,7 @@
-import { fetchTopRatedMovies } from "@/lib/data";
+import { fetchTopRatedMovies } from "@/app/lib/data";
 import MovieCard from "./movie-card";
 import MoviePagination from "./movie-pagination";
-import { SortKey } from "@/lib/definitions";
+import { SortKey } from "@/app/lib/definitions";
 export default async function MoviesList({
   currentPage,
   sort_by,
