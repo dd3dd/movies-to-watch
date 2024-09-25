@@ -58,7 +58,9 @@ export async function fetchMovieDetails(id: string) {
     budget: data.budget ? data.budget.toLocaleString() : "-",
     revenue: data.revenue ? data.revenue.toLocaleString() : "-",
     status: data.status || "-",
-    poster_path: "https://image.tmdb.org/t/p/w780" + data.poster_path,
+    poster_path: data.poster_path
+      ? "https://image.tmdb.org/t/p/w780" + data.poster_path
+      : null,
   };
 }
 export async function fetchMovieCredits(id: string) {
@@ -93,4 +95,21 @@ export async function fetchMovieCredits(id: string) {
     actors: actors,
   };
 }
-export async function fetchDataByQuery(query: string) {}
+export async function fetchMoviesByQuery(currentPage: number, query: string) {
+  const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${currentPage}`;
+
+  const data = await fetchData(url);
+  const movies: Movie[] = data.results
+    .filter((movie: Movie) => movie.release_date)
+    .map((movie: Movie) => ({
+      id: movie.id,
+      title: movie.title,
+      release_date: movie.release_date,
+      vote_average: movie.vote_average,
+      poster_path: movie.poster_path
+        ? "https://image.tmdb.org/t/p/w780" + movie.poster_path
+        : null,
+    }));
+
+  return movies;
+}

@@ -9,7 +9,7 @@ import {
   TagIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
-import { fetchMovieDetails, fetchMovieCredits } from "@/lib/data";
+import { fetchMovieDetails, fetchMovieCredits } from "@/app/lib/data";
 
 export default async function Details({ id }: { id: string }) {
   const {
