@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import google from "./google.png";
 import Link from "next/link";
+import GoogleSigninButton from "./ui/auth/google-signin-button";
 
 export default function LoginPage() {
   return (
@@ -14,16 +13,7 @@ export default function LoginPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Button className="w-full" variant="outline">
-            <Image
-              className="mr-4"
-              src={google}
-              width={24}
-              height={24}
-              alt="google-logo"
-            />
-            使用 Google 帳號繼續
-          </Button>
+          <GoogleSigninButton />
         </CardContent>
         <CardContent className="text-center">或</CardContent>
         <CardContent className="text-center">

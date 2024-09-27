@@ -38,7 +38,7 @@ export default function SortDropdown({
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <ArrowsUpDownIcon className="w-5 mr-1" />
-          排序
+          Sort
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
