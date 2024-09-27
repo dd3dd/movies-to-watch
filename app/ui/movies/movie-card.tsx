@@ -3,8 +3,8 @@ import { Movie } from "@/app/lib/definitions";
 import Image from "next/image";
 import Link from "next/link";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { HeartIcon } from "@heroicons/react/24/outline";
 import defaultImage from "@/public/default.png";
+import LikeButton from "../like-button";
 export default function MovieCard({ movie }: { movie: Movie }) {
   const { id, title, release_date, vote_average, poster_path } = movie;
   return (
@@ -32,7 +32,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           <p>{release_date}</p>
         </CardContent>
         <CardFooter className="absolute p-3 bottom-0 right-0">
-          <HeartIcon className="size-8" />
+          <LikeButton movieId={id} />
         </CardFooter>
       </Link>
     </Card>
