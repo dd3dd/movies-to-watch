@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 export type Movie = {
   id: number;
   title: string;
@@ -20,4 +21,13 @@ export type Actor = {
   name: string;
   profile_path: string;
   character: string;
+};
+
+export type UserContextType = {
+  user: User | null;
+  loading: boolean;
+  favoriteMovies: Movie[];
+  favoriteMoviesLoading: boolean;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setFavoriteMovies: React.Dispatch<React.SetStateAction<Movie[]>>;
 };

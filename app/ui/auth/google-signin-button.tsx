@@ -8,7 +8,6 @@ import { addUser, userExist } from "@/app/lib/db";
 
 export default function GoogleSigninButton() {
   const router = useRouter();
-
   const handleGoogleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -25,7 +24,7 @@ export default function GoogleSigninButton() {
         if (!exist) {
           await addUser(email, displayName ?? "Unknown User");
         }
-        router.push("/top-rated");
+        router.replace("/top-rated");
       }
     } catch (error) {
       console.error("Error during Google login:", error);
@@ -40,7 +39,7 @@ export default function GoogleSigninButton() {
         height={24}
         alt="google-logo"
       />
-      使用 Google 帳號繼續
+      Continue with Google Account
     </Button>
   );
 }

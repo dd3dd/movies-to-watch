@@ -12,12 +12,14 @@ async function fetchData(url: string) {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
       throw new Error(`HTTP error Status: ${response.status}`);
     }
     return await response.json();
   } catch (error) {
     console.error("Fetch Error:", error);
-
     throw new Error("Failed to fetch data.");
   }
 }
@@ -46,7 +48,7 @@ export async function fetchTopRatedMovies(
 export async function fetchMovieDetails(id: string) {
   const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
   const data = await fetchData(url);
-
+  if (!data) return null;
   return {
     title: data.title || "-",
     vote_average: data.vote_average ?? "-",
@@ -105,7 +107,7 @@ export async function fetchMoviesByQuery(currentPage: number, query: string) {
       id: movie.id,
       title: movie.title,
       release_date: movie.release_date,
-      vote_average: movie.vote_average,
+      vote_average: movie.vote_average ?? "-",
       poster_path: movie.poster_path
         ? "https://image.tmdb.org/t/p/w780" + movie.poster_path
         : null,

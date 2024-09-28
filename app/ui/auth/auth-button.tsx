@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/app/lib/useAuth";
+import { useUserContext } from "@/app/user-provider";
 import { auth } from "@/firebase";
 import { signOut } from "firebase/auth";
 import {
@@ -9,9 +9,9 @@ import {
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 export default function AuthButton() {
-  const { user, loading } = useAuth();
+  const { user, loading } = useUserContext();
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="h-9">Loading...</p>;
   }
   return user ? <SignoutButton /> : <SigninButton />;
 }
@@ -27,9 +27,11 @@ export function SigninButton() {
   );
 }
 export function SignoutButton() {
+  const { setUser } = useUserContext();
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      setUser(null);
     } catch (error) {
       console.error("Sign out error", error);
     }

@@ -12,6 +12,8 @@ import {
 import { fetchMovieDetails, fetchMovieCredits } from "@/app/lib/data";
 
 export default async function Details({ id }: { id: string }) {
+  const details = await fetchMovieDetails(id);
+  if (!details) return;
   const {
     title,
     vote_average,
@@ -23,7 +25,8 @@ export default async function Details({ id }: { id: string }) {
     budget,
     revenue,
     status,
-  } = await fetchMovieDetails(id);
+  } = details;
+
   const { director, screenplay } = await fetchMovieCredits(id);
   const infoData = [
     {

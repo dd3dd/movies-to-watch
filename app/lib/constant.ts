@@ -7,10 +7,10 @@ export const sortMap = {
   title_asc: "title.asc",
 };
 export const sortOptions = [
-  { value: "rating_desc", label: "評分(降序)" },
-  { value: "rating_asc", label: "評分(升序)" },
-  { value: "date_desc", label: "發行日期(降序)" },
-  { value: "date_asc", label: "發行日期(升序)" },
-  { value: "title_desc", label: "標題(Z-A)" },
-  { value: "title_asc", label: "標題(A-Z)" },
+  { value: "rating_desc", label: "Rating Descending" },
+  { value: "rating_asc", label: "Rating Ascending" },
+  { value: "date_desc", label: "Release Date Descending" },
+  { value: "date_asc", label: "Release Date Ascending" },
+  { value: "title_desc", label: "Title (Z-A)" },
+  { value: "title_asc", label: "Title (A-Z)" },
 ];

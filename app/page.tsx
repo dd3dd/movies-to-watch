@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
-import GoogleSigninButton from "./ui/auth/google-signin-button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import AuthStatusMessage from "./ui/auth/auth-status-message";
 
 export default function LoginPage() {
   return (
@@ -12,15 +10,7 @@ export default function LoginPage() {
             Movies To Watch
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <GoogleSigninButton />
-        </CardContent>
-        <CardContent className="text-center">或</CardContent>
-        <CardContent className="text-center">
-          <Button asChild className="w-full" variant="outline">
-            <Link href={"/top-rated"}>以訪客身份繼續</Link>
-          </Button>
-        </CardContent>
+        <AuthStatusMessage />
       </Card>
     </div>
   );
