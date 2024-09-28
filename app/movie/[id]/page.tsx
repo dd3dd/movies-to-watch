@@ -3,10 +3,13 @@ import Image from "next/image";
 import Details from "@/app/ui/movie-details/details";
 import Casts from "@/app/ui/movie-details/casts";
 import defaultImage from "@/public/default.png";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
-  const { poster_path } = await fetchMovieDetails(id);
+  const movies = await fetchMovieDetails(id);
+  if (!movies) notFound();
+  const { poster_path } = movies;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">

@@ -5,10 +5,24 @@ import Link from "next/link";
 import { StarIcon } from "@heroicons/react/24/solid";
 import defaultImage from "@/public/default.png";
 import LikeButton from "../like-button";
-export default function MovieCard({ movie }: { movie: Movie }) {
+export default function MovieCard({
+  movie,
+  selectedCard = null,
+  index,
+}: {
+  movie: Movie;
+  selectedCard?: number | null; //  for draw a movie
+  index?: number; //  for draw a movie
+}) {
   const { id, title, release_date, vote_average, poster_path } = movie;
   return (
-    <Card className="relative cursor-pointer hover:bg-muted/50 transition-colors">
+    <Card
+      className={`relative cursor-pointer hover:bg-muted/50 transition-colors ${
+        selectedCard !== null && selectedCard === index
+          ? "border-4 border-yellow-400"
+          : ""
+      }`}
+    >
       <Link href={`/movie/${id}`}>
         <CardContent className="px-0 pb-4">
           <Image
@@ -32,7 +46,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           <p>{release_date}</p>
         </CardContent>
         <CardFooter className="absolute p-3 bottom-0 right-0">
-          <LikeButton movieId={id} />
+          <LikeButton movie={movie} />
         </CardFooter>
       </Link>
     </Card>

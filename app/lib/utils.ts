@@ -65,3 +65,6 @@ export function sortMovies(movies: Movie[], sortBy: SortKey) {
     }
   });
 }
+export function favoriteExist(id: number, favoriteMovies: Movie[]) {
+  return favoriteMovies.some((movie) => movie.id === id);
+}
