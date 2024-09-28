@@ -38,6 +38,7 @@ export default function UserProvider({
   useEffect(() => {
     if (!user) {
       setFavoriteMovies([]);
+      setFavoriteMoviesLoading(false);
       return;
     }
     const fetch = async () => {
