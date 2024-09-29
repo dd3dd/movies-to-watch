@@ -3,11 +3,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import googleLogo from "@/public/google.png";
 import { auth, GoogleAuthProvider, signInWithPopup } from "@/firebase";
-import { useRouter } from "next/navigation";
 import { addUser, userExist } from "@/app/lib/db";
 
 export default function GoogleSigninButton() {
-  const router = useRouter();
   const handleGoogleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -15,7 +13,6 @@ export default function GoogleSigninButton() {
 
       if (result) {
         const { email, displayName } = result.user;
-
         if (!email) {
           console.error("Invalid email returned from Google authentication");
           return;
@@ -24,7 +21,6 @@ export default function GoogleSigninButton() {
         if (!exist) {
           await addUser(email, displayName ?? "Unknown User");
         }
-        router.replace("/top-rated");
       }
     } catch (error) {
       console.error("Error during Google login:", error);

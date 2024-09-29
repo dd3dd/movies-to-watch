@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Movies To Watch
 
-## Getting Started
+### 功能簡介
 
-First, run the development server:
+- 查看最高評分電影，可依評分、上映日期及標題排序。
+- 搜尋電影標題，以無限滾動呈現多頁搜尋結果。
+- 點擊電影能看到導演、劇情簡介、演員等詳細資訊。
+- 將電影加入待看清單，並在清單查看已收藏的電影，以及隨機選擇一部電影 (登入才能使用待看清單功能)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 功能預覽
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### top-rated page:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+瀏覽最高評分且評價數超過 1000 的電影，以 Pagination 呈現多頁資料。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![top-rated](./public/readme/top-rated.png)
 
-## Learn More
+#### details:
 
-To learn more about Next.js, take a look at the following resources:
+顯示電影的詳細資料
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![details](./public/readme/details.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### search page:
 
-## Deploy on Vercel
+根據使用者輸入顯示搜尋結果，以 Infinite Scroll 呈現多頁資料。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![search](./public/readme/search.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### watch-list
+
+查看已收藏的電影，點擊 Choose One button 可以隨機選擇一部電影。
+
+![watch-list](./public/readme/watch-list.png)
+
+### Tech Stack
+
+TypeScript, Next.js, TMDB API, Tailwind CSS, shadcn/ui, Firebase Authentication, Cloud Firestore
