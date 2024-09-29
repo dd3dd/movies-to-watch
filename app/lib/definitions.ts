@@ -29,5 +29,6 @@ export type UserContextType = {
   favoriteMovies: Movie[];
   favoriteMoviesLoading: boolean;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setFavoriteMoviesLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setFavoriteMovies: React.Dispatch<React.SetStateAction<Movie[]>>;
 };

@@ -20,6 +20,7 @@ export default function InfiniteScrollMovies({
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [ref, inView] = useInView();
 
   async function loadMoreMovies() {
@@ -43,9 +44,11 @@ export default function InfiniteScrollMovies({
       const results = await fetchMoviesAction(1, query);
       const sortedResults = sortMovies(results, sort_by);
       setMovies(sortedResults);
+      setLoading(false);
       setHasMore(results.length > 0);
       setPage(1);
     };
+    setLoading(true);
     fetchFirstPage();
   }, [query, sort_by]);
 
@@ -57,18 +60,27 @@ export default function InfiniteScrollMovies({
 
   return (
     <>
-      {movies.length === 0 && <MoviesNotFound />}
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {movies.map((movie, index) => (
-          <MovieCard key={`${movie.id}-${index}`} movie={movie} />
-        ))}
-      </div>
-      <div
-        ref={ref}
-        className="col-span-1 mt-16 flex items-center justify-center sm:col-span-2 md:col-span-3 lg:col-span-4"
-      >
-        {hasMore && <Spinner />}
-      </div>
+      {loading ? (
+        <div className="flex justify-center">
+          <Spinner />
+        </div>
+      ) : movies.length === 0 ? (
+        <MoviesNotFound />
+      ) : (
+        <>
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {movies.map((movie, index) => (
+              <MovieCard key={`${movie.id}-${index}`} movie={movie} />
+            ))}
+          </div>
+          <div
+            ref={ref}
+            className="col-span-1 mt-16 flex items-center justify-center sm:col-span-2 md:col-span-3 lg:col-span-4"
+          >
+            {hasMore && <Spinner />}
+          </div>
+        </>
+      )}
     </>
   );
 }

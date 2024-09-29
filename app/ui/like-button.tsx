@@ -6,19 +6,14 @@ import { useUserContext } from "../user-provider";
 import { Movie } from "../lib/definitions";
 import { favoriteExist } from "../lib/utils";
 import Spinner from "./spinner";
-// import { fetchFavoriteMovies } from "../lib/db";
 
 export default function LikeButton({ movie }: { movie: Movie }) {
   const { id } = movie;
   const { user, favoriteMovies, setFavoriteMovies, favoriteMoviesLoading } =
     useUserContext();
-  if (favoriteMoviesLoading) return <Spinner />;
+
   const exists = favoriteExist(id, favoriteMovies);
 
-  // const fetchMovies = async () => {
-  //   const movies = await fetchFavoriteMovies(user?.email ?? "");
-  //   setFavoriteMovies(movies || []);
-  // };
   const onClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -32,11 +27,12 @@ export default function LikeButton({ movie }: { movie: Movie }) {
       setFavoriteMovies((prev) => [...prev, movie]);
       await addFavoriteMovie(user.email ?? "", movie);
     }
-    // await fetchMovies();
   };
   return (
     <button onClick={onClick} className="active:scale-[0.90] duration-200">
-      {exists ? (
+      {favoriteMoviesLoading ? (
+        <Spinner />
+      ) : exists ? (
         <SolidHeartIcon className="size-8 text-red-600 " />
       ) : (
         <OutlineHeartIcon className="size-8" />
