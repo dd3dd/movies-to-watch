@@ -33,6 +33,10 @@
 
 ![watch-list](./public/readme/watch-list.png)
 
+### Demo
+
+[https://www.youtube.com/watch?v=syeUWmYPXbs&t=1s](https://www.youtube.com/watch?v=syeUWmYPXbs&t=1s)
+
 ### Tech Stack
 
 TypeScript, Next.js, TMDB API, Tailwind CSS, shadcn/ui, Firebase Authentication, Cloud Firestore
