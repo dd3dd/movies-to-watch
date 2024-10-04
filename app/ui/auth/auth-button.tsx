@@ -16,7 +16,7 @@ export default function AuthButton() {
   return user ? <SignoutButton /> : <SigninButton />;
 }
 
-export function SigninButton() {
+function SigninButton() {
   return (
     <Button variant="outline" asChild>
       <Link href={"/"}>
@@ -26,7 +26,7 @@ export function SigninButton() {
     </Button>
   );
 }
-export function SignoutButton() {
+function SignoutButton() {
   const { setUser } = useUserContext();
   const handleSignOut = async () => {
     try {

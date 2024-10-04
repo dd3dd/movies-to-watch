@@ -21,7 +21,7 @@ export default function LinkOptions({
       return null;
   }
 }
-export function Search() {
+function Search() {
   return (
     <Button asChild>
       <Link href={"/search"}>
@@ -31,7 +31,7 @@ export function Search() {
     </Button>
   );
 }
-export function TopRated() {
+function TopRated() {
   return (
     <Button className="flex-grow" asChild>
       <Link href={"/top-rated"}>
@@ -41,7 +41,7 @@ export function TopRated() {
     </Button>
   );
 }
-export function WatchList() {
+function WatchList() {
   return (
     <Button className="flex-grow" asChild>
       <Link href={"/watch-list"}>

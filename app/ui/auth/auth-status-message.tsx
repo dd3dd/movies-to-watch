@@ -19,7 +19,7 @@ export default function AuthStatusMessage() {
   return user ? <Loggedin user={user} /> : <NotLoggedin />;
 }
 
-export function Loggedin({ user }: { user: User }) {
+function Loggedin({ user }: { user: User }) {
   return (
     <>
       <CardContent className="text-center">
@@ -33,7 +33,7 @@ export function Loggedin({ user }: { user: User }) {
     </>
   );
 }
-export function NotLoggedin() {
+function NotLoggedin() {
   return (
     <>
       <CardContent>
