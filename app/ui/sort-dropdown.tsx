@@ -20,17 +20,16 @@ export default function SortDropdown({
   const currentSort = searchParams.get("sort");
 
   const createSortByURL = (sort_by: string) => {
-    const paramsTopRated = new URLSearchParams(searchParams);
-    const paramsSearch = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams);
 
-    const page = paramsTopRated.get("page") || "1";
-    paramsTopRated.set("page", page);
-    paramsTopRated.set("sort", sort_by);
+    const page = params.get("page") || "1";
+    params.set("page", page);
+    params.set("sort", sort_by);
 
-    paramsSearch.set("sort", sort_by);
-    return type === "top-rated"
-      ? `${pathname}?${paramsTopRated.toString()}`
-      : `${pathname}?${paramsSearch.toString()}`;
+    if (type === "search") {
+      params.delete("page");
+    }
+    return `${pathname}?${params.toString()}`;
   };
 
   return (
