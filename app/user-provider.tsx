@@ -27,28 +27,28 @@ export default function UserProvider({
     setFavoriteMoviesLoading,
     setFavoriteMovies,
   };
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
-  useEffect(() => {
-    const fetch = async () => {
-      if (!user && !loading) {
-        setFavoriteMovies([]);
-        setFavoriteMoviesLoading(false);
-        return;
-      }
-      if (user) {
-        const movies = await fetchFavoriteMovies(user.email || "");
-        setFavoriteMovies(movies ?? []);
-        setFavoriteMoviesLoading(false);
-      }
-    };
-    fetch();
-  }, [user, loading]);
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     setLoading(false);
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     if (!user && !loading) {
+  //       setFavoriteMovies([]);
+  //       setFavoriteMoviesLoading(false);
+  //       return;
+  //     }
+  //     if (user) {
+  //       const movies = await fetchFavoriteMovies(user.email || "");
+  //       setFavoriteMovies(movies ?? []);
+  //       setFavoriteMoviesLoading(false);
+  //     }
+  //   };
+  //   fetch();
+  // }, [user, loading]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }

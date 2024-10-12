@@ -1,5 +1,4 @@
 import { sortMovies } from "../app/lib/utils";
-import { describe, it, expect } from "vitest";
 import { Movie } from "../app/lib/definitions";
 describe("sortMovies", () => {
   const mockMovies: Movie[] = [

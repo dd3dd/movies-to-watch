@@ -1,5 +1,5 @@
-import { generatePagination } from "../app/lib/utils";
-import { describe, it, expect } from "vitest";
+import { generatePagination } from "@/app/lib/utils";
+
 
 describe("generatePagination", () => {
   it("should return all pages when totalPages is 7 or less", () => {
