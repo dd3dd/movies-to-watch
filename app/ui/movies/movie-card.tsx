@@ -17,6 +17,7 @@ export default function MovieCard({
   const { id, title, release_date, vote_average, poster_path } = movie;
   return (
     <Card
+      data-testid="movie-card"
       className={`relative cursor-pointer hover:bg-muted/50 transition-colors ${
         selectedCard !== null && selectedCard === index
           ? "border-4 border-yellow-400"
